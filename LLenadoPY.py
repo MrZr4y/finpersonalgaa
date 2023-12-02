@@ -21,7 +21,19 @@ from google.oauth2 import service_account
 
 # %%
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = 'key.json'
+KEY ={
+    "type": "service_account",
+    "project_id": st.secrets["project_id"],
+    "private_key_id": st.secrets["private_key_id"],
+    "private_key": st.secrets["private_key"],
+    "client_email": st.secrets["client_email"],
+    "client_id": st.secrets["client_id"],
+    "auth_uri": f"https://accounts.google.com/o/oauth2/auth",
+    "token_uri": f"https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": f"https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": st.secrets["client_x509_cert_url"],
+    "universe_domain": "googleapis.com"
+}
 # Escribe aquí el ID de tu documento:
 SPREADSHEET_ID = '1LdjjQh4IX_lGM9iup3FXOeWxqESBIeVwDa27uPoKcVI'
 RANGE_NAME_GET="Fill F!A:O"
