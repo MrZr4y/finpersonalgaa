@@ -25,34 +25,7 @@ KEY ={
     "type": "service_account",
     "project_id": st.secrets["project_id"],
     "private_key_id": st.secrets["private_key_id"],
-    "private_key": (
-        st.secrets["p1"]+
-        st.secrets["p2"]+
-        st.secrets["p3"]+
-        st.secrets["p4"]+
-        st.secrets["p6"]+
-        st.secrets["p7"]+
-        st.secrets["p8"]+
-        st.secrets["p9"]+
-        st.secrets["p10"]+
-        st.secrets["p11"]+
-        st.secrets["p12"]+
-        st.secrets["p13"]+
-        st.secrets["p14"]+
-        st.secrets["p15"]+
-        st.secrets["p16"]+
-        st.secrets["p17"]+
-        st.secrets["p18"]+
-        st.secrets["p19"]+
-        st.secrets["p20"]+
-        st.secrets["p21"]+
-        st.secrets["p22"]+
-        st.secrets["p23"]+
-        st.secrets["p24"]+
-        st.secrets["p25"]+
-        st.secrets["p26"]+
-        st.secrets["p27"]
-    ),
+    "private_key": st.secrets["private_key"],
     "client_email": st.secrets["client_email"],
     "client_id": st.secrets["client_id"],
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
