@@ -68,7 +68,7 @@ RANGE_NAME_GET="Fill F!A:O"
 st.write(KEY)
 
 creds = None
-creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+creds = service_account.Credentials.from_service_account_info(KEY, scopes=SCOPES)
 
 service = build('sheets', 'v4', credentials=creds)
 sheet = service.spreadsheets()
