@@ -97,7 +97,7 @@ def llenar(valores):
 # %%
 password=st.text_input('Ingresa la contraseña')
 
-if password==st.secrets["password"]:
+if password==str(st.secrets["password"]):
     fecha = st.date_input('Selecciona una fecha', datetime.now(),format='MM/DD/YYYY',key='fecha')
 
     tipo=st.radio('Tipo',['Ingresos','Egresos'],key='tipo')
