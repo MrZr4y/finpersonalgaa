@@ -95,77 +95,80 @@ def llenar(valores):
 
 
 # %%
-fecha = st.date_input('Selecciona una fecha', datetime.now(),format='MM/DD/YYYY',key='fecha')
+password=st.text_input('Ingresa la contraseña')
 
-tipo=st.radio('Tipo',['Ingresos','Egresos'],key='tipo')
+if password=st.secrets["password"]:
+    fecha = st.date_input('Selecciona una fecha', datetime.now(),format='MM/DD/YYYY',key='fecha')
 
-CF=st.toggle('Cashflow')
+    tipo=st.radio('Tipo',['Ingresos','Egresos'],key='tipo')
 
-if CF==True:
-    CF_l='Cashflow'
-else:
-    CF_l='Nocashflow'
+    CF=st.toggle('Cashflow')
 
-
-TDC=st.toggle('Tarjeta de Credito')
-
-if TDC==True:
-    TDC_l='Si'
-else:
-    TDC_l='No'
+    if CF==True:
+        CF_l='Cashflow'
+    else:
+        CF_l='Nocashflow'
 
 
-monto=st.number_input('Monto',min_value=0.00,format='%.2f',key='monto')
+    TDC=st.toggle('Tarjeta de Credito')
 
-categoria=st.selectbox('Categoria',categorias.columns,key='cat')
-
-subcategoria=st.selectbox('Subcategoria',categorias.loc[~categorias[categoria].isin(['', None]),categoria],key='subcat')
-
-selected_option_distrito = st.selectbox('Distrito', df_fix.loc[~df_fix['Distrito'].isin(['', None]),'Distrito'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='distr')
-
-if selected_option_distrito == 'CUSTOM':
-    custom = st.text_input('Ingreso el nuevo distrito:')
-    distrito=custom
-else:
-    distrito=selected_option_distrito
-
-selected_option_establecimiento = st.selectbox('Establecimiento', df_fix.loc[~df_fix['Establecimiento'].isin(['', None]),'Establecimiento'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='establ')
-
-if selected_option_establecimiento == 'CUSTOM':
-    custom = st.text_input('Ingreso el nuevo establecimiento:')
-    establecimiento=custom
-else:
-    establecimiento=selected_option_establecimiento
-
-selected_option_item = st.selectbox('Item', df_fix.loc[~df_fix['Item'].isin(['', None]),'Item'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='item')
-
-if selected_option_item == 'CUSTOM':
-    custom = st.text_input('Ingreso el nuevo distrito:')
-    item=custom
-else:
-    item=selected_option_item
+    if TDC==True:
+        TDC_l='Si'
+    else:
+        TDC_l='No'
 
 
-st.write(f'{fecha} {tipo} {CF_l} {TDC_l} {monto} {categoria} {subcategoria} {distrito} {establecimiento} {item}')
+    monto=st.number_input('Monto',min_value=0.00,format='%.2f',key='monto')
 
-valores=[fecha.strftime('%d-%b-%Y'),tipo,distrito,establecimiento,categoria,subcategoria,item,monto,CF_l,TDC_l]
+    categoria=st.selectbox('Categoria',categorias.columns,key='cat')
 
-boton=st.button('FILL', on_click=llenar, args=(valores,))
+    subcategoria=st.selectbox('Subcategoria',categorias.loc[~categorias[categoria].isin(['', None]),categoria],key='subcat')
 
-if boton==True:
-    filling2 = service.spreadsheets().values().update(
-        spreadsheetId=SPREADSHEET_ID,
-        range="DB F!A2",
-        valueInputOption='USER_ENTERED',
-        body={'values': (sheet.values().get(spreadsheetId=SPREADSHEET_ID,range=f'Fill F!A2:O{maxrow-1}').execute()).get('values',[])}
-    ).execute()
+    selected_option_distrito = st.selectbox('Distrito', df_fix.loc[~df_fix['Distrito'].isin(['', None]),'Distrito'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='distr')
+
+    if selected_option_distrito == 'CUSTOM':
+        custom = st.text_input('Ingreso el nuevo distrito:')
+        distrito=custom
+    else:
+        distrito=selected_option_distrito
+
+    selected_option_establecimiento = st.selectbox('Establecimiento', df_fix.loc[~df_fix['Establecimiento'].isin(['', None]),'Establecimiento'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='establ')
+
+    if selected_option_establecimiento == 'CUSTOM':
+        custom = st.text_input('Ingreso el nuevo establecimiento:')
+        establecimiento=custom
+    else:
+        establecimiento=selected_option_establecimiento
+
+    selected_option_item = st.selectbox('Item', df_fix.loc[~df_fix['Item'].isin(['', None]),'Item'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='item')
+
+    if selected_option_item == 'CUSTOM':
+        custom = st.text_input('Ingreso el nuevo distrito:')
+        item=custom
+    else:
+        item=selected_option_item
 
 
-# %%
-on = st.toggle('Mostrar ultimos 10 gastos')
+    st.write(f'{fecha} {tipo} {CF_l} {TDC_l} {monto} {categoria} {subcategoria} {distrito} {establecimiento} {item}')
 
-if on:
-    st.table(df_fix[-10:])
+    valores=[fecha.strftime('%d-%b-%Y'),tipo,distrito,establecimiento,categoria,subcategoria,item,monto,CF_l,TDC_l]
+
+    boton=st.button('FILL', on_click=llenar, args=(valores,))
+
+    if boton==True:
+        filling2 = service.spreadsheets().values().update(
+            spreadsheetId=SPREADSHEET_ID,
+            range="DB F!A2",
+            valueInputOption='USER_ENTERED',
+            body={'values': (sheet.values().get(spreadsheetId=SPREADSHEET_ID,range=f'Fill F!A2:O{maxrow-1}').execute()).get('values',[])}
+        ).execute()
+
+
+    # %%
+    on = st.toggle('Mostrar ultimos 10 gastos')
+
+    if on:
+        st.table(df_fix[-10:])
 
 
 
