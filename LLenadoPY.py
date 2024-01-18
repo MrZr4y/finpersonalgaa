@@ -143,7 +143,7 @@ if password==str(st.secrets["password"]):
     selected_option_item = st.selectbox('Item', df_fix.loc[~df_fix['Item'].isin(['', None]),'Item'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='item')
 
     if selected_option_item == 'CUSTOM':
-        custom3 = st.text_input('Ingreso el nuevo distrito:')
+        custom3 = st.text_input('Ingreso el nuevo item:')
         item=custom3
     else:
         item=selected_option_item
