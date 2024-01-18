@@ -135,16 +135,16 @@ if password==str(st.secrets["password"]):
     selected_option_establecimiento = st.selectbox('Establecimiento', df_fix.loc[~df_fix['Establecimiento'].isin(['', None]),'Establecimiento'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='establ')
 
     if selected_option_establecimiento == 'CUSTOM':
-        custom = st.text_input('Ingreso el nuevo establecimiento:')
-        establecimiento=custom
+        custom2 = st.text_input('Ingreso el nuevo establecimiento:')
+        establecimiento=custom2
     else:
         establecimiento=selected_option_establecimiento
 
     selected_option_item = st.selectbox('Item', df_fix.loc[~df_fix['Item'].isin(['', None]),'Item'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='item')
 
     if selected_option_item == 'CUSTOM':
-        custom = st.text_input('Ingreso el nuevo distrito:')
-        item=custom
+        custom3 = st.text_input('Ingreso el nuevo distrito:')
+        item=custom3
     else:
         item=selected_option_item
 
