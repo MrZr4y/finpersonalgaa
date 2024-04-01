@@ -124,16 +124,7 @@ if password==str(st.secrets["password"]):
 
     subcategoria=st.selectbox('Subcategoria',categorias.loc[~categorias[categoria].isin(['', None]),categoria],key='subcat')
 
-    '''
-    selected_option_distrito = st.selectbox('Distrito', df_fix.loc[~df_fix['Distrito'].isin(['', None]),'Distrito'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='distr')
 
-    if selected_option_distrito == 'CUSTOM':
-        custom = st.text_input('Ingreso el nuevo distrito:')
-        distrito=custom
-    else:
-        distrito=selected_option_distrito
-
-    '''
     distrito=''
     
     selected_option_establecimiento = st.selectbox('Establecimiento', df_fix.loc[~df_fix['Establecimiento'].isin(['', None]),'Establecimiento'].drop_duplicates( keep='first').tolist() + ['CUSTOM'],key='establ')
