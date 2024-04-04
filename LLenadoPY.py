@@ -151,7 +151,7 @@ if password==str(st.secrets["password"]):
     boton=st.button('FILL', on_click=llenar, args=(valores,))
 
     if boton==True:
-        filling2 = service.spreadsheets().values().update(
+        filling2 = service.spreadsheets().values().append(
             spreadsheetId=SPREADSHEET_ID,
             range="DB F!A2",
             valueInputOption='USER_ENTERED',
