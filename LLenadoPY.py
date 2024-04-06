@@ -146,7 +146,7 @@ if password==str(st.secrets["password"]):
 
     st.write(f'{fecha} {tipo} {CF_l} {TDC_l} {monto} {categoria} {subcategoria} {distrito} {establecimiento} {item}')
 
-    valores=[fecha.strftime('%d-%B-%Y'),tipo,distrito,establecimiento,categoria,subcategoria,item,monto,CF_l,TDC_l]
+    valores=[fecha.strftime('%d-%m-%Y'),tipo,distrito,establecimiento,categoria,subcategoria,item,monto,CF_l,TDC_l]
 
     boton=st.button('FILL', on_click=llenar, args=(valores,))
 
